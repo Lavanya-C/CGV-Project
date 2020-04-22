@@ -194,36 +194,37 @@ void createNewWindow()
 	glTranslatef(600.0, 300.0, 0.0);
 	drawTree();
 	glPopMatrix();
-
 	drawTree();
 	drawGrasses();
+	drawStone();
+
 	char str1[] = "A to stop";
-	char str2[] = "W to up";
-	char str3[] = "S to down";
+	//char str2[] = "W to up";
+	//char str3[] = "S to down";
 	char str4[] = "D to Move";
-	char str5[] = "W to up";
-	char str6[] = "S to down";
+	//char str5[] = "W to up";
+	//char str6[] = "S to down";
 	char str7[] = "Press F";
 	//Motion to woodcutter that is 'd' or else 'a' stop
 	//flag5 is set on 'd' and unset on 'a'
 	if (j < 550 && flag5 == 1)
 	{
-		cutter(100 + j, 220 + yMove);
-		j += 1.0;
+		fisherMan(100 + j, 220 + yMove);
+		j += 20.0;
 		displayHelp(str1, 1000, 100);
-		displayHelp(str2, 1000, 70);
-		displayHelp(str3, 1000, 40);
+		//displayHelp(str2, 1000, 70);
+		//displayHelp(str3, 1000, 40);
 	}
 	else if (j < 550)
 	{
-		cutter(100 + j, 220 + yMove);
+		fisherMan(100 + j, 220 + yMove);
 		displayHelp(str4, 1000, 100);
-		displayHelp(str5, 1000, 70);
-		displayHelp(str6, 1000, 40);
+		//displayHelp(str5, 1000, 70);
+		//displayHelp(str6, 1000, 40);
 	}
 	else
 	{
-		cutter(650, 220 + yMove);
+		fisherMan(650, 220 + yMove);
 		displayHelp(str7, 1000, 100);
 	}
 	glutPostRedisplay();
@@ -314,11 +315,6 @@ void initSecondWindow(void)
 }
 */
 
-
-
-
-
-
 void createHelpWindow(void)
 {
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
@@ -353,7 +349,7 @@ void createThirdWindow()
 	glutInitWindowSize(1300, 700);
 	glutInitWindowPosition(0, 0);
 	glutDestroyWindow(secondWindow);
-	thirdWindow = glutCreateWindow("Miracle:Honest Woodcutter");
+	thirdWindow = glutCreateWindow("Human and Nature Interaction: Fishing");
 	glutDisplayFunc(mydisplayThirdWindow);
 	//while(flagPlayAxe)
 		//PlaySound(TEXT("Axe.wav"),  NULL, SND_FILENAME | SND_ASYNC);
@@ -370,14 +366,12 @@ void keyThird(unsigned char key, int x, int y)
 	{
 		flagFourthScene = 0;
 		createFourthWindow();
-		flagPlayAxe = false;
+		flagPlayRow = false;
 		PlaySound(TEXT("sound.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	}
 	//if(key=='r')
 		//PlaySound(TEXT("Axe.wav"),  NULL, SND_FILENAME | SND_ASYNC);
 }
-
-
 
 
 void mydisplayThirdWindow()
@@ -395,7 +389,6 @@ void mydisplayThirdWindow()
 	drawTree();
 	glPopMatrix();
 
-
 	glPushMatrix();
 	glTranslatef(600.0, 300.0, 0.0);
 	drawTree();
@@ -403,321 +396,87 @@ void mydisplayThirdWindow()
 
 	drawTree();
 	drawGrasses();
+	drawStone();
 
-
-	drawWoodcutterOnTree(550.0, 450.0);
+	drawFisher(600.0, 190.0);
 
 	glPushMatrix();
-	//drawAxeDown(550,450);
-	if (theta >= 0.0 && theta < 50.0)
+
+	if (theta >= 0.0 && theta < 20.0)
 	{
-		drawAxeUp(550, 450);
-		theta += 1.0;
+		drawRowDown(630, 275);
+		theta += 0.5;
 	}
-	else if (theta >= 50.0)
+	else if (theta >= 20.0 && theta)
 	{
 		glPushMatrix();
 		glTranslatef(0.0, -10.0, 0.0);
-		drawAxeDown(550, 450);
+		drawRowUp(630, 265);
 		glPopMatrix();
-		theta += 1.0;
+		theta += 0.5;
 		//(TEXT("Axe.wav"),  NULL, SND_FILENAME | SND_ASYNC);
 	}
-	if (theta > 100.0)
+	if (theta > 500.0)
 	{
 		theta = 0.0;
-	}
+	} 
+
 	char str8[] = "Press T";
 	displayHelp(str8, 1000, 100);
 	glutPostRedisplay();
 }
 
-void drawWoodcutterOnTree(float x, float y)
-{
-	//Draws the face
-	float radius = 35.0;
-	glColor3f(1.0, 0.90, 0.85);
 
-	glBegin(GL_POLYGON);
-	for (float i = 0; i < 360; i += 0.1)
-		glVertex2f(cos(i) * radius + x, sin(i) * radius + y + 150);
-	glEnd();
-
-	radius = 6.0;
-	glColor3f(1.0, 1.0, 1.0);
-	glBegin(GL_POLYGON);
-	for (float i = 0; i < 360; i++)
-		glVertex2f(cos(i) * radius + x + 20, sin(i) * radius + y + 160);
-	glEnd();
-
-	radius = 3.0;
-	glColor3f(0.0, 0.0, 0.0);
-	glBegin(GL_POLYGON);
-	for (float i = 0; i < 360; i++)
-		glVertex2f(cos(i) * radius + x + 20, sin(i) * radius + y + 160);
-	glEnd();
-
-
-	//Hair of the woodcutter
-	glColor3f(0.0, 0.0, 0.0);
-	glBegin(GL_POLYGON);
-	glVertex2f(x - 35, y + 150);
-	glVertex2f(x - 35, y + 170);
-	glVertex2f(x - 25, y + 195);
-	glVertex2f(x + 40, y + 195);
-	glVertex2f(x + 35, y + 175);
-	glVertex2f(x + 20, y + 170);
-	glEnd();
-
-
-	//Draws the neck of the woodcutter
-	glColor3f(1.0, 0.90, 0.85);
-	glBegin(GL_POLYGON);
-	glVertex2f(x - 10.0, y + 100.0);
-	glVertex2f(x - 10.0, y + 120.0);
-	glVertex2f(x + 10.0, y + 120.0);
-	glVertex2f(x + 10.0, y + 100.0);
-	glEnd();
-
-
-	//Draws the left hand of woodcutter
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 10, y + 90);
-	glVertex2f(x + 10, y + 100);
-	glVertex2f(x + 50, y + 85);
-	glVertex2f(x + 50, y + 75);
-	glEnd();
-
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 50, y + 75);
-	glVertex2f(x + 50, y + 85);
-	glVertex2f(x + 75, y + 115);
-	glVertex2f(x + 75, y + 105);
-	glEnd();
-
-
-
-	//Draws the red shirt of woodcutter
-	glColor3f(0.8, 0.0, 0.0);
-	glBegin(GL_POLYGON);
-	glVertex2f(x - 25, y);
-	glVertex2f(x - 25, y + 75);
-	glVertex2f(x - 10, y + 100);
-	glVertex2f(x + 10, y + 100);
-	glVertex2f(x + 25, y + 75);
-	glVertex2f(x + 25, y);
-	glEnd();
-
-	//Draws the mouth of the woodcutter
-	glColor3f(0.0, 0.0, 0.0);
-	glBegin(GL_LINE_STRIP);
-	glVertex2f(x + 25, y + 125);
-	glVertex2f(x + 10, y + 125);
-	glVertex2f(x + 10, y + 127);
-	glEnd();
-
-	//Draws the Nose of the woodcutter
-
-	glBegin(GL_LINE_STRIP);
-	glVertex2f(x + 32, y + 140);
-	glVertex2f(x + 32, y + 150);
-	glVertex2f(x + 34, y + 155);
-	glEnd();
-
-	glBegin(GL_LINE_STRIP);
-	glVertex2f(x - 10, y + 160);
-	glVertex2f(x - 20, y + 160);
-	glVertex2f(x - 20, y + 140);
-	glVertex2f(x - 10, y + 140);
-	glEnd();
-
-	glBegin(GL_LINES);
-	glVertex2f(x - 20, y + 150);
-	glVertex2f(x - 10, y + 150);
-	glEnd();
-
-	glColor3f(1.0, 0.90, 0.85);
-	glBegin(GL_POLYGON);
-	glVertex2f(x, y + 70);
-	glVertex2f(x, y + 80);
-	glVertex2f(x + 55, y + 65);
-	glVertex2f(x + 55, y + 55);
-	glEnd();
-
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 55, y + 55);
-	glVertex2f(x + 55, y + 65);
-	glVertex2f(x + 80, y + 95);
-	glVertex2f(x + 80, y + 85);
-	glEnd();
-
-	//Drwas the trousers of woodcutter
-	glColor3f(0.0, 0.0, 0.0);
-	glBegin(GL_POLYGON);
-	glVertex2f(x - 25, y);
-	glVertex2f(x - 25, y + 30);
-	glVertex2f(x + 25, y + 30);
-	glVertex2f(x + 25, y);
-	glEnd();
-
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 25, y);
-	glVertex2f(x + 25, y + 26);
-	glVertex2f(x + 50, y + 26);
-	glVertex2f(x + 50, y);
-	glEnd();
-
-	//Draws the leg
-
-	glColor3f(1.0, 0.90, 0.85);
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 50, y + 8);
-	glVertex2f(x + 50, y + 18);
-	glVertex2f(x + 75, y + 18);
-	glVertex2f(x + 75, y + 8);
-	glEnd();
-
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 75, y - 42);
-	glVertex2f(x + 75, y + 18);
-	glVertex2f(x + 85, y + 18);
-	glVertex2f(x + 85, y - 42);
-	glEnd();
-
-	//glColor3f(0.0,0.0,0.0);
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 85, y - 42);
-	glVertex2f(x + 85, y - 32);
-	glVertex2f(x + 95, y - 37);
-	glVertex2f(x + 95, y - 42);
-	glEnd();
-
-	//Draws the left leg
-
-	glColor3f(1.0, 0.90, 0.85);
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 50, y - 50);
-	glVertex2f(x + 50, y - 40);
-	glVertex2f(x + 60, y - 35);
-	glVertex2f(x + 60, y - 50);
-	glEnd();
-
-	//glColor3f(0.0,0.0,0.0);
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 60, y - 50);
-	glVertex2f(x + 60, y - 40);
-	glVertex2f(x + 70, y - 45);
-	glVertex2f(x + 70, y - 50);
-	glEnd();
-	glColor3f(1.0, 0.90, 0.85);
-	//Draws the axe
-/*	glColor3f(0.8456,0.684,0.4424);
-	glBegin(GL_POLYGON);
-		glVertex2f(x+50,y+100);
-		glVertex2f(x+50,y+110);
-		glVertex2f(x+150,y+110+yAxe);
-		glVertex2f(x+150,y+100+yAxe);
-	glEnd();
-
-	glColor3f(0.0,0.0,0.0);
-	glBegin(GL_POLYGON);
-		glVertex2f(x+115,y+70+yAxe);
-		glVertex2f(x+115,y+120+yAxe);
-		glVertex2f(x+140,y+120+yAxe);
-		glVertex2f(x+140,y+70+yAxe);
-	glEnd();
-	*/
-
-	//Draws the Right palm
-	glColor3f(1.0, 0.90, 0.85);
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 80, y + 85);
-	glVertex2f(x + 80, y + 105);
-	glVertex2f(x + 90, y + 105);
-	glVertex2f(x + 90, y + 95);
-	glEnd();
-
-	glColor3f(0.0, 0.0, 0.0);
-	glBegin(GL_LINES);
-	glVertex2f(x + 80, y + 105);
-	glVertex2f(x + 80, y + 100);
-	glVertex2f(x + 82.5, y + 105);
-	glVertex2f(x + 82.5, y + 100);
-	glVertex2f(x + 85, y + 105);
-	glVertex2f(x + 85, y + 100);
-	glVertex2f(x + 87, y + 105);
-	glVertex2f(x + 87, y + 100);
-	glVertex2f(x + 89.5, y + 105);
-	glVertex2f(x + 89.5, y + 100);
-	glEnd();
-
-	//Draws the left palm
-	glColor3f(1.0, 0.90, 0.85);
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 65, y + 95);
-	glVertex2f(x + 65, y + 105);
-	glVertex2f(x + 75, y + 105);
-	glVertex2f(x + 75, y + 95);
-	glEnd();
-
-	glColor3f(0.0, 0.0, 0.0);
-	glBegin(GL_LINES);
-	glVertex2f(x + 65, y + 105);
-	glVertex2f(x + 65, y + 100);
-	glVertex2f(x + 67.5, y + 105);
-	glVertex2f(x + 67.5, y + 100);
-	glVertex2f(x + 70, y + 105);
-	glVertex2f(x + 70, y + 100);
-	glVertex2f(x + 72.5, y + 105);
-	glVertex2f(x + 72.5, y + 100);
-	glVertex2f(x + 74.5, y + 105);
-	glVertex2f(x + 74.5, y + 100);
-	glEnd();
-}
-
-void drawAxeUp(float x, float y)
+void drawRowDown(float x, float y)
 {
 	glColor3f(0.8456, 0.684, 0.4424);
 	glBegin(GL_POLYGON);
-	glVertex2f(x + 50, y + 100);
-	glVertex2f(x + 50, y + 110);
-	glVertex2f(x + 150, y + 160);
-	glVertex2f(x + 150, y + 150);
+	glVertex2f(x + 0, y + 10);
+	glVertex2f(x + 0, y + 20);
+	glVertex2f(x + 315, y + 20);
+	glVertex2f(x + 85, y + 15);
 	glEnd();
-
+	float radius = 7.0;
 	glColor3f(0.0, 0.0, 0.0);
 	glBegin(GL_POLYGON);
-	glVertex2f(x + 115, y + 145);
-	glVertex2f(x + 150, y + 160);
-	glVertex2f(x + 175, y + 120);
-	glVertex2f(x + 155, y + 100);
+	for (float i = 0; i < 360; i++)
+		glVertex2f(cos(i) * radius + x + 65, sin(i) * radius + y + 13);
 	glEnd();
+	glColor3f(0.0, 0.0, 0.0);
+	glBegin(GL_LINES);
+	glVertex2f(x + 295, y + 20);
+	glVertex2f(x + 100, y - 100);
+	glEnd();
+
 }
 
-void drawAxeDown(float x, float y)
+void drawRowUp(float x, float y)
 {
 	glColor3f(0.8456, 0.684, 0.4424);
 	glBegin(GL_POLYGON);
-	glVertex2f(x + 50, y + 100);
-	glVertex2f(x + 50, y + 110);
-	glVertex2f(x + 150, y + 110);
-	glVertex2f(x + 150, y + 100);
+	glVertex2f(x + 0, y + 10);
+	glVertex2f(x + 0, y + 20);
+	glVertex2f(x + 315, y + 180);
+	glVertex2f(x + 85, y + 65);
 	glEnd();
-
+	float radius = 7.0;
 	glColor3f(0.0, 0.0, 0.0);
 	glBegin(GL_POLYGON);
-	glVertex2f(x + 115, y + 70);
-	glVertex2f(x + 115, y + 120);
-	glVertex2f(x + 140, y + 120);
-	glVertex2f(x + 140, y + 70);
+	for (float i = 0; i < 360; i++)
+		glVertex2f(cos(i) * radius + x + 65, sin(i) * radius + y + 55);
 	glEnd();
+	glColor3f(0.0, 0.0, 0.0);
+	glBegin(GL_LINES);
+	glVertex2f(x + 285, y + 165);
+	glVertex2f(x + 450, y - 120);
+	glEnd();	
 }
 
 void createFourthWindow(void)
 {
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowPosition(0, 0);
-	fourthWindow = glutCreateWindow("Miracle:Honest Woodcutter");
+	fourthWindow = glutCreateWindow("Human and Nature Interaction: Fishing");
 	glutDestroyWindow(thirdWindow);
 	glutDisplayFunc(mydisplayFourthWindow);
 	PlaySound(TEXT("sound.wav"), NULL, SND_FILENAME | SND_ASYNC);
@@ -737,7 +496,7 @@ void keyFourth(unsigned char key, int x, int y)
 		exit(0);
 
 	if (key == 'g' || key == 'G')
-		flagMoveDownAxe = 1;
+		flagMoveDownRow = 1;
 
 	if (key == 'y' || key == 'Y')
 		flagFifthScene = 1;
@@ -754,35 +513,34 @@ void mydisplayFourthWindow()
 	drawTree();
 	glPopMatrix();
 
-
 	glPushMatrix();
 	glTranslatef(600.0, 300.0, 0.0);
 	drawTree();
 	glPopMatrix();
-
 	drawTree();
 	drawGrasses();
+	drawStone();
 
-	drawWoodcutterOnTree(550.0, 450.0);
+	drawFisher(550.0, 450.0);
 
-	if (moveAxeY < 200 && flagMoveDownAxe)
+	if (moveRowY < 200 && flagMoveDownRow)
 	{
-		moveDownAxe(650.0, 450.0 - moveAxeY);
+		moveDownRow(650.0, 450.0 - moveRowY);
 		displayText();
-		moveAxeY += 1.0;
+		moveRowY += 1.0;
 	}
-	else if (moveAxeY < 200)
+	else if (moveRowY < 200)
 	{
-		moveDownAxe(650.0, 450.0);
+		moveDownRow(650.0, 450.0);
 		char str9[] = "Press G";
 		displayHelp(str9, 1000, 100);
 	}
-	else if (moveAxeY >= 200 && flagFifthScene)
+	else if (moveRowY >= 200 && flagFifthScene)
 	{
 		createFifthWindow();
 		flagFifthScene = 0;
 	}
-	else if (moveAxeY >= 200 && !flagFifthScene)
+	else if (moveRowY >= 200 && !flagFifthScene)
 	{
 		displayTextGod();
 		char str10[] = "Press Y";
@@ -824,7 +582,7 @@ void displayTextGod()
 
 }
 
-void moveDownAxe(float x, float y)
+void moveDownRow(float x, float y)
 {
 	glColor3f(0.8456, 0.684, 0.4424);
 	glBegin(GL_POLYGON);
@@ -859,7 +617,7 @@ void createFifthWindow(void)
 	glutInitWindowSize(1300, 700);
 	glutInitWindowPosition(0, 0);
 	glutDestroyWindow(fourthWindow);
-	fifthWindow = glutCreateWindow("Miracle:Honest Woodcutter");
+	fifthWindow = glutCreateWindow("Human and Nature Interaction: Fishing");
 	glutDisplayFunc(mydisplayFifthWindow);
 	initSecondWindow();
 	glutKeyboardFunc(key);
@@ -873,7 +631,7 @@ void mydisplayFifthWindow(void)
 	drawUnderWater();
 	if (moveAxeInWater < 500)
 	{
-		moveDownAxe(600, 750 - moveAxeInWater);
+		moveDownRow(600, 750 - moveAxeInWater);
 		moveAxeInWater += 1.0;
 	}
 	else if (moveAxeInWater > 500)
@@ -892,10 +650,10 @@ void mydisplayFifthWindow(void)
 void drawUnderWater(void)
 {
 	glClearColor(0.0, 0.4, 0.8, 1.0);
-	drawStone();
+	drawFloorWater();
 }
 
-void drawStone(void)
+void drawFloorWater(void)
 {
 	glColor3f(0.862745, 0.862745, 0.862745);
 	glBegin(GL_POLYGON);
@@ -994,7 +752,7 @@ void createSixthWindow(void)
 	glutInitWindowSize(1300, 700);
 	glutInitWindowPosition(0, 0);
 	glutDestroyWindow(fifthWindow);
-	sixthWindow = glutCreateWindow("Miracle:Honest Woodcutter");
+	sixthWindow = glutCreateWindow("Human and Nature Interaction: Fishing");
 	glutDisplayFunc(mydisplaySixthWindow);
 	glutKeyboardFunc(keySixth);
 	initSecondWindow();
@@ -1078,7 +836,7 @@ void displayTextCutterOne()
 void drawWoodcutterOnRiverSide(float x, float y)
 {
 
-	float radius = 35.0;
+	/* float radius = 35.0;
 	glColor3f(1.0, 0.90, 0.85);
 
 	glBegin(GL_POLYGON);
@@ -1264,6 +1022,7 @@ void drawWoodcutterOnRiverSide(float x, float y)
 	glVertex2f(x + 75, y + 18);
 	glVertex2f(x + 75, y + 8);
 	glEnd();
+	*/
 }
 
 void drawCutterInFish(float x, float y, int color)
@@ -1331,7 +1090,7 @@ void createSeventhWindow(void)
 	glutInitWindowSize(1300, 700);
 	glutInitWindowPosition(0, 0);
 	glutDestroyWindow(sixthWindow);
-	seventhWindow = glutCreateWindow("Miracle:Honest Woodcutter");
+	seventhWindow = glutCreateWindow("Human and Nature Interaction: Fishing");
 	glutDisplayFunc(mydisplaySeventhWindow);
 	glutKeyboardFunc(keySeventh);
 	initSecondWindow();
@@ -1410,7 +1169,7 @@ void createEigthWindow()
 	glutInitWindowSize(1300, 700);
 	glutInitWindowPosition(0, 0);
 	glutDestroyWindow(seventhWindow);
-	eighthWindow = glutCreateWindow("Miracle:Honest Woodcutter");
+	eighthWindow = glutCreateWindow("Human and Nature Interaction: Fishing");
 	glutDisplayFunc(displayEigthWindow);
 	glutKeyboardFunc(keyEigth);
 	initSecondWindow();
@@ -1511,7 +1270,7 @@ void createNinthWindow()
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(1300, 700);
 	glutInitWindowPosition(10, 10);
-	ninthWindow = glutCreateWindow("Miracle:Honest Woodcutter");
+	ninthWindow = glutCreateWindow("Human and Nature Interaction: Fishing");
 	glutDisplayFunc(displayNinthWindow);
 	glutDestroyWindow(tenthWindow);
 	initSecondWindow();
@@ -1559,7 +1318,7 @@ void createTenthWindow()
 	glutInitWindowSize(1300, 700);
 	glutInitWindowPosition(0, 0);
 	glutDestroyWindow(eighthWindow);
-	tenthWindow = glutCreateWindow("Miracle:Honest Woodcutter");
+	tenthWindow = glutCreateWindow("Human and Nature Interaction: Fishing");
 	glutDisplayFunc(displayTenthWindow);
 	glutKeyboardFunc(keyTenth);
 	initSecondWindow();

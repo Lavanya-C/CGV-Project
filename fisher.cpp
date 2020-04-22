@@ -13,9 +13,8 @@
 
 using namespace std;
 
-void fisherMan(float x, float y)
+void drawFisher(float x, float y)
 {
-
 	//Draw face
 	float radius = 35.0;
 	glColor3f(1.0, 0.90, 0.85);
@@ -23,7 +22,7 @@ void fisherMan(float x, float y)
 	glBegin(GL_POLYGON);
 	for (float i = 0; i < 360; i += 0.1)
 		glVertex2f(cos(i) * radius + x, sin(i) * radius + y + 150);
-	glEnd(); 
+	glEnd();
 
 	radius = 6.0;
 	glColor3f(1.0, 1.0, 1.0);
@@ -39,7 +38,6 @@ void fisherMan(float x, float y)
 		glVertex2f(cos(i) * radius + x + 20, sin(i) * radius + y + 160);
 	glEnd();
 
-
 	//Hair of man
 	glColor3f(0.0, 0.0, 0.0);
 	glBegin(GL_POLYGON);
@@ -54,7 +52,7 @@ void fisherMan(float x, float y)
 	glVertex2f(x - 40, y + 150);
 	glEnd();
 
-	//Draw neck of the man
+	//Draws neck
 	glColor3f(1.0, 0.90, 0.85);
 	glBegin(GL_POLYGON);
 	glVertex2f(x - 10.0, y + 100.0);
@@ -64,7 +62,7 @@ void fisherMan(float x, float y)
 	glEnd();
 
 
-	//Draws left hand of man
+	//Draw left hand 
 	glBegin(GL_POLYGON);
 	glVertex2f(x + 10, y + 90);
 	glVertex2f(x + 10, y + 100);
@@ -75,30 +73,12 @@ void fisherMan(float x, float y)
 	glBegin(GL_POLYGON);
 	glVertex2f(x + 50, y + 75);
 	glVertex2f(x + 50, y + 85);
+	glVertex2f(x + 75, y + 115);
 	glVertex2f(x + 75, y + 105);
-	glVertex2f(x + 75, y + 95);
 	glEnd();
 
-	//Draw basket
-	glColor3f(0.8500, 0.684, 0.4424);
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 20, y + 30);
-	glVertex2f(x + 30, y + 20);
-	glVertex2f(x + 70, y + 20);
-	glVertex2f(x + 80, y + 30);
-	glVertex2f(x + 80, y + 60);
-	glVertex2f(x + 20, y + 60);
-	glEnd();
-	//Handle of basket
-	glColor3f(0.8500, 0.684, 0.4424);
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 45, y + 60);
-	glVertex2f(x + 55, y + 60);
-	glVertex2f(x + 45, y + 90);
-	glVertex2f(x + 55, y + 90);
-	glEnd();
-	
-	//Shirt of man
+
+	//Draw Shirt
 	glColor3f(0.8, 0.0, 1.0);
 	glBegin(GL_POLYGON);
 	glVertex2f(x - 25, y);
@@ -109,76 +89,7 @@ void fisherMan(float x, float y)
 	glVertex2f(x + 25, y);
 	glEnd();
 
-	//Draws left leg of man
-	glColor3f(1.0, 0.90, 0.85);
-	glBegin(GL_POLYGON);
-	glVertex2f(x - 15, y - 75);
-	glVertex2f(x - 15, y);
-	glVertex2f(x - 5, y);
-	glVertex2f(x - 5, y - 75);
-	glEnd();
-	glColor3f(0.0, 0.0, 0.0);
-	glBegin(GL_POLYGON);
-	glVertex2f(x - 15, y - 75);
-	glVertex2f(x - 5, y - 65);
-	glVertex2f(x + 15, y - 70);
-	glVertex2f(x + 15, y - 75);
-	glEnd();
-
-	//Draw right leg of man
-	glColor3f(1.0, 0.90, 0.85);
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 10, y - 75);
-	glVertex2f(x + 10, y);
-	glVertex2f(x + 20, y);
-	glVertex2f(x + 20, y - 75);
-	glEnd();
-	glColor3f(0.0, 0.0, 0.0);
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 10, y - 75);
-	glVertex2f(x + 20, y - 65);
-	glVertex2f(x + 40, y - 70);
-	glVertex2f(x + 40, y - 75);
-	glEnd();
-
-
-	//Draw trousers of man
-	glColor3f(0.0, 0.0, 0.0);
-	glBegin(GL_POLYGON);
-	glVertex2f(x - 25, y);
-	glVertex2f(x - 25, y + 25);
-	glVertex2f(x + 25, y + 25);
-	glVertex2f(x + 25, y);
-	glEnd();
-	glBegin(GL_POLYGON);
-	glVertex2f(x - 25, y - 30);
-	glVertex2f(x - 25, y);
-	glVertex2f(x - 2, y);
-	glVertex2f(x - 2, y - 30);
-	glEnd();
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 4, y - 30);
-	glVertex2f(x + 4, y);
-	glVertex2f(x + 25, y);
-	glVertex2f(x + 25, y - 30);
-	glEnd();
-	
-	//Draw right hand of man
-	glColor3f(1.0, 0.90, 0.85);
-	glBegin(GL_POLYGON);
-	glVertex2f(x, y + 70);
-	glVertex2f(x, y + 80);
-	glVertex2f(x + 55, y + 65);
-	glVertex2f(x + 55, y + 55);
-	glEnd();
-	glBegin(GL_POLYGON);
-	glVertex2f(x + 55, y + 55);
-	glVertex2f(x + 55, y + 65);
-	glVertex2f(x + 80, y + 95);
-	glVertex2f(x + 80, y + 85);
-	glEnd();
-
-	//Draw mouth of man
+	//Draw mouth
 	glColor3f(0.0, 0.0, 0.0);
 	glBegin(GL_LINE_STRIP);
 	glVertex2f(x + 25, y + 125);
@@ -186,7 +97,7 @@ void fisherMan(float x, float y)
 	glVertex2f(x + 10, y + 127);
 	glEnd();
 
-	//Draws the Nose of the man
+	//Draw  Nose
 	glBegin(GL_LINE_STRIP);
 	glVertex2f(x + 32, y + 140);
 	glVertex2f(x + 32, y + 150);
@@ -205,23 +116,62 @@ void fisherMan(float x, float y)
 	glVertex2f(x - 10, y + 150);
 	glEnd();
 
-
-	//Draw fishing row
-	glColor3f(0.8456, 0.684, 0.4424);
+	glColor3f(1.0, 0.90, 0.85);
 	glBegin(GL_POLYGON);
-	glVertex2f(x - 110, y + 105);
-	glVertex2f(x - 75, y + 105);
-	glVertex2f(x + 195, y + 105);
-	glVertex2f(x + 195, y + 95);
+	glVertex2f(x, y + 70);
+	glVertex2f(x, y + 80);
+	glVertex2f(x + 55, y + 65);
+	glVertex2f(x + 55, y + 55);
 	glEnd();
-	radius = 10.0;
+
+	glBegin(GL_POLYGON);
+	glVertex2f(x + 55, y + 55);
+	glVertex2f(x + 55, y + 65);
+	glVertex2f(x + 80, y + 95);
+	glVertex2f(x + 80, y + 85);
+	glEnd();
+
+	//Draw Trousers 
 	glColor3f(0.0, 0.0, 0.0);
 	glBegin(GL_POLYGON);
-	for (float i = 0; i < 360; i++)
-		glVertex2f(cos(i) * radius + x + 125, sin(i) * radius + y + 95);
+	glVertex2f(x - 25, y);
+	glVertex2f(x - 25, y + 30);
+	glVertex2f(x + 25, y + 30);
+	glVertex2f(x + 25, y);
+	glEnd();
+
+	glBegin(GL_POLYGON);
+	glVertex2f(x + 25, y);
+	glVertex2f(x + 25, y + 26);
+	glVertex2f(x + 50, y + 26);
+	glVertex2f(x + 50, y);
 	glEnd();
 	
-	//Draw Right palm
+	//Draw Leg
+	glColor3f(1.0, 0.90, 0.85);
+	glBegin(GL_POLYGON);
+	glVertex2f(x + 50, y + 8);
+	glVertex2f(x + 50, y + 18);
+	glVertex2f(x + 75, y + 18);
+	glVertex2f(x + 75, y + 8);
+	glEnd();
+
+	glBegin(GL_POLYGON);
+	glVertex2f(x + 75, y - 42);
+	glVertex2f(x + 75, y + 18);
+	glVertex2f(x + 85, y + 18);
+	glVertex2f(x + 85, y - 42);
+	glEnd();
+	glBegin(GL_POLYGON);
+	glColor3f(0.0,0.0,0.0);
+	glVertex2f(x + 75, y - 42);
+	glVertex2f(x + 75, y - 32);
+	glVertex2f(x + 95, y - 37);
+	glVertex2f(x + 95, y - 42);
+	glEnd();
+
+
+	//Draws the Right palm
 	glColor3f(1.0, 0.90, 0.85);
 	glBegin(GL_POLYGON);
 	glVertex2f(x + 80, y + 85);
@@ -229,6 +179,7 @@ void fisherMan(float x, float y)
 	glVertex2f(x + 90, y + 105);
 	glVertex2f(x + 90, y + 95);
 	glEnd();
+
 	glColor3f(0.0, 0.0, 0.0);
 	glBegin(GL_LINES);
 	glVertex2f(x + 80, y + 105);
@@ -243,7 +194,7 @@ void fisherMan(float x, float y)
 	glVertex2f(x + 89.5, y + 100);
 	glEnd();
 
-	//Draw left palm
+	//Draws the left palm
 	glColor3f(1.0, 0.90, 0.85);
 	glBegin(GL_POLYGON);
 	glVertex2f(x + 65, y + 95);
@@ -251,6 +202,7 @@ void fisherMan(float x, float y)
 	glVertex2f(x + 75, y + 105);
 	glVertex2f(x + 75, y + 95);
 	glEnd();
+
 	glColor3f(0.0, 0.0, 0.0);
 	glBegin(GL_LINES);
 	glVertex2f(x + 65, y + 105);
@@ -265,6 +217,13 @@ void fisherMan(float x, float y)
 	glVertex2f(x + 74.5, y + 100);
 	glEnd();
 
+	glColor3f(0.8500, 0.684, 0.4424);
+	glBegin(GL_POLYGON);
+	glVertex2f(x - 20, y - 50);
+	glVertex2f(x - 30, y - 60);
+	glVertex2f(x - 80, y - 60);
+	glVertex2f(x - 90, y - 50);
+	glVertex2f(x - 90, y - 20);
+	glVertex2f(x - 20, y - 20);
+	glEnd();
 }
-
-	

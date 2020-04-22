@@ -1,16 +1,10 @@
-#pragma once
+
 #include <windows.h>
 #include <math.h>
-
-
 #include <GL/glut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
-
-
 #include <MMSystem.h>
-
-
 #include <string.h>
 #include <math.h>
 #include <cmath>
@@ -23,7 +17,6 @@ using namespace std;
 
 void click(int, int, int, int);
 
-
 void createNewWindow(void);
 void initSecondWindow(void);
 void mydisplaySecondWindow(void);
@@ -34,44 +27,36 @@ void drawWater(void);
 void drawLand(void);
 void drawGrasses();
 void drawGrass(int, int);
+//void drawTreeEdges(void);
+//void drawLeafTriangles(void);
 
-
-void drawTreeEdges(void);
-void drawLeafTriangles(void);
-
-
-void drawWoodcutter(int, int);
-void drawCutter(int, int);
-void cutter(float, float);
-
-
+//void drawWoodcutter(int, int);
+//void drawCutter(int, int);
+void fisherMan(float, float);
 
 void createHelpWindow(void);
 void displayHelpWindow();
 
 void createThirdWindow();
 void mydisplayThirdWindow();
-void drawWoodcutterOnTree(float, float);
-void drawAxeUp(float, float);
-void drawAxeDown(float, float);
+void drawFisher(float, float);
+void drawRowUp(float, float);
+void drawRowDown(float, float);
 
 void createFourthWindow(void);
 void mydisplayFourthWindow(void);
 
-void moveDownAxe(float x, float y);
-
-
+void moveDownRow(float x, float y);
 
 void createFifthWindow(void);
 void mydisplayFifthWindow(void);
 void drawUnderWater(void);
 void drawStone(void);
+void drawFloorWater(void);
 void drawAxeInWater(float, float);
 
 void drawFishes(float);
 void drawFish(float, float);
-
-
 
 void createSixthWindow(void);
 void mydisplaySixthWindow(void);
