@@ -9,7 +9,6 @@
 #include <cmath>
 #include <iostream>
 #include <stdlib.h>
-#include <conio.h>
 
 //Draw Tree
 void drawTree(void)
@@ -135,7 +134,7 @@ void drawWater(void)
 //Draw Landscape
 void drawLand(void)
 {
-	glColor3f(0.231075, 0.372549, 0.043137);
+	glColor3f(0.131075, 0.472549, 0.043137);
 	glBegin(GL_POLYGON);
 	glVertex2f(0, 50);
 	glVertex2f(1300, 50);
@@ -163,9 +162,24 @@ void drawGrasses(void)
 	drawGrass(50, -10);
 	drawGrass(200, 210);
 	drawGrass(50, 500);
-	drawGrass(600, 135);
-	drawGrass(700, 155);
+	//drawGrass(600, 135);
+	//drawGrass(700, 155);
 	drawGrass(1000, 500);
 	drawGrass(1200, 460);
 }
 
+//drawStone();
+
+void drawStone(void)
+{
+	glColor3f(0.2, 0.0, 0.2);
+	glBegin(GL_POLYGON);
+	glVertex2f(640, 205);
+	glVertex2f(660, 200);
+	glVertex2f(660, 155);
+	glVertex2f(570, 155);
+	glVertex2f(570, 200);
+	glVertex2f(580, 205);
+
+	glEnd();
+}

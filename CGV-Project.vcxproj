@@ -144,6 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="fisher.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="man.cpp" />
     <ClCompile Include="env.cpp" />

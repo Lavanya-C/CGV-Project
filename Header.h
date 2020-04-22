@@ -26,7 +26,7 @@ int windowFlag = 1;
 float woodcutterMover;
 static int flag5 = 0, flagThirdScene = 0;
 float yMove = 0;
-float moveAxeY = 0;
+float moveRowY = 0;
 #define PI 3.14159265359
 
 
@@ -38,7 +38,7 @@ float moveAxeInWater = 0;
 
 float moveFishes = 0.0;
 float theta = 0.0;
-static int flagMoveDownAxe = 0;
+static int flagMoveDownRow = 0;
 
 
 //define color for three axes
@@ -65,4 +65,4 @@ char strJ[] = "Press J to Special axes";
 char strK[] = "Press K to conclusion";
 float tCount = 0.0;
 
-bool flagPlayAxe = true;
+bool flagPlayRow = true;
